@@ -1,0 +1,57 @@
+@broot: "../../libs/bower_components/bootstrap/";
+@lpath: "@{broot}less/";
+
+
+// Core variables and mixins
+@import "@{lpath}variables.less";
+@import "@{lpath}mixins.less";
+
+//Redefine bootstrap variables:
+@icon-font-path:"@{broot}fonts/";
+
+// Reset and dependencies
+@import "@{lpath}normalize.less";
+@import "@{lpath}print.less";
+@import "@{lpath}glyphicons.less";
+
+// Core CSS
+@import "@{lpath}scaffolding.less";
+@import "@{lpath}type.less";
+@import "@{lpath}code.less";
+@import "@{lpath}grid.less";
+@import "@{lpath}tables.less";
+@import "@{lpath}forms.less";
+@import "@{lpath}buttons.less";
+
+// Components
+//@import "component-animations.less";
+//@import "dropdowns.less";
+//@import "button-groups.less";
+//@import "input-groups.less";
+//@import "navs.less";
+//@import "navbar.less";
+//@import "breadcrumbs.less";
+@import "@{lpath}pagination.less";
+//@import "pager.less";
+//@import "labels.less";
+//@import "badges.less";
+//@import "jumbotron.less";
+//@import "thumbnails.less";
+//@import "alerts.less";
+//@import "progress-bars.less";
+//@import "media.less";
+//@import "list-group.less";
+@import "@{lpath}panels.less";
+//@import "responsive-embed.less";
+//@import "wells.less";
+//@import "close.less";
+
+// Components w/ JavaScript
+//@import "modals.less";
+//@import "tooltip.less";
+//@import "popovers.less";
+//@import "carousel.less";
+
+// Utility classes
+//@import "utilities.less";
+//@import "responsive-utilities.less";

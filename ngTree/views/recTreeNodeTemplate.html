@@ -1,0 +1,32 @@
+<div class="panel panel-default" style="margin-bottom:0px;margin-right:-1px;">
+    <div class="panel-heading">
+        <button type="button" class="btn btn-xs" ng-disabled="!treeRec.getChildNodes(treeNode).length" ng-show="treeNode.parentId && treeNode.show" ng-click="treeRec.toggleNode(treeNode)">
+            <span class="glyphicon glyphicon-folder-open"/>
+        </button>
+        <button type="button" class="btn btn-xs" ng-disabled="!treeRec.getChildNodes(treeNode).length" ng-hide="treeNode.show" ng-click="treeRec.toggleNode(treeNode)">
+            <span class="glyphicon glyphicon-folder-close"/>
+        </button>
+        <span>{{treeNode.name}}</span>
+        <span ng-if="treeNode.depth >= 9">
+            <i style="color:#ccc">Max depth reached for this algo</i>
+        </span>
+        <div class="btn-group" style="float:right;margin-top:-5px;margin-right:-12px;">
+            <button type="button" class="btn btn-sm btn-primary" ng-click='treeRec.editNode(treeNode)'>
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click='treeRec.removeNode(treeNode)' ng-show="treeNode.parentId">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-success" ng-click='treeRec.addNode(treeNode)'>
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+    </div>
+    <div class="panel-body" ng-if="treeNode.depth < 9" ng-show="treeNode.show" style="padding:0px 0px 0px 15px;margin-bottom:-1px;">
+        <div ng-repeat='treeNode in treeRec.getChildNodes(treeNode)| filter:{name:treeNode.filter} | limitTo: ((treeNode.page||0)+1)*5' ng-include="'views/recTreeNodeTemplate.html'"></div>
+    </div>
+
+    <div class='panel-footer' ng-show="treeRec.getChildNodes(treeNode).length > 5">
+        Filter: <input type="text" ng-model="treeNode.filter"/>
+    </div>
+</div>
