@@ -6,7 +6,8 @@ define('base/ngControllerBase', ['base/atom', 'underscore'], function (parentCla
                 $scope: ngOptions.$scope
             });
             _.extend(self.$scope, {
-                template: options.template
+                template: options.template,
+                ngViewPrefix: ngViewPrefix
             });
             return self;
         },
@@ -23,14 +24,15 @@ define('base/ngControllerBase', ['base/atom', 'underscore'], function (parentCla
             return self;
         }
     }, {
-        ngRegister: function (ngName, module, options) {
+        ngRegister: function (ngName, module, options, callback) {
             var ngController = this, args = this.prototype.ngInit.toString().match(/\((.*)\)/);
             var argNames = _.map(args && args[1] && args[1].split(",") || [], function (s) {
                 return s.trim();
             });
 
             module.controller(ngName, argNames.concat(function () {
-                new ngController(options, _.object(argNames, _.toArray(arguments)));
+                var res = new ngController(options, _.object(argNames, _.toArray(arguments)));
+                callback && callback(res);
             }));
         }
     });

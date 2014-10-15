@@ -2,15 +2,17 @@
     //Global things
     window.IS_DEV = true;
     window.IS_LIVE = false;
-
+    window.ngViewPrefix = '';
     //Let's load 
     require_config(function () {
-
         require(IS_LIVE ? ['js/bundle.min.js'] : [], function () {
+
             require(['ngTree/ngModule', 'ngTree/ngMainController', 'jquery'], function (ngModule, mainController) {
+
                 mainController.ngRegister('treeMainController', ngModule, {
-                    template: 'views/tree.html'
+                    template: ngViewPrefix + 'views/tree.html'
                 });
+
                 angular.bootstrap($(".treeContainer").attr({
                     'ng-include': 'template',
                     'ng-controller': 'treeMainController'
@@ -24,9 +26,9 @@
             return IS_DEV ? mainPath + (devSuffix ? devSuffix : "") : mainPath + (suffix !== false ? suffix || ".min" : '');
         }, l = window.location, devPreffix = l.origin;
         if (l.pathname !== "/")
-            devPreffix += l.pathname.replace("/index.html", "");
+            devPreffix += l.pathname.replace("/index.html", "").replace("/context.html", "");
         require.config({
-            urlArgs: "rand=" + (new Date().getTime()),
+            urlArgs: "rand = " + (new Date().getTime()),
             baseUrl: devPreffix,
             packages: [
                 {

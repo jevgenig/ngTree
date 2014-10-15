@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="panel-body" ng-if="treeNode.depth < 9" ng-show="treeNode.show" style="padding:0px 0px 0px 15px;margin-bottom:-1px;">
-        <div ng-repeat='treeNode in treeRec.getChildNodes(treeNode)| filter:{name:treeNode.filter} | limitTo: ((treeNode.page||0)+1)*5' ng-include="'views/recTreeNodeTemplate.html'"></div>
+        <div ng-repeat='treeNode in treeRec.getChildNodes(treeNode)| filter:{name:treeNode.filter} | limitTo: ((treeNode.page||0)+1)*5' ng-include="ngViewPrefix+'views/recTreeNodeTemplate.html'"></div>
     </div>
 
     <div class='panel-footer' ng-show="treeRec.getChildNodes(treeNode).length > 5">

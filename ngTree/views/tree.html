@@ -2,7 +2,7 @@
     <div class='row'>
         <div class='col-md-6'>
             <h3>{{treeRec.DEMO_NAME}} - recursive template</h3>
-            <div ng-repeat='treeNode in [treeRec.rootNode]' ng-include="'views/recTreeNodeTemplate.html'"></div>
+            <div ng-repeat='treeNode in [treeRec.rootNode]' ng-include="ngViewPrefix+'views/recTreeNodeTemplate.html'"></div>
         </div>
         <div class='col-md-6'>
             <h3>{{treeRec.DEMO_NAME}} - flat array</h3>
