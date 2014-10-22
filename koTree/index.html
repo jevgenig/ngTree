@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>koTree</title>
+        <link href="css/bundle.css" rel="stylesheet" media="all" />
+    </head>
+    <body>
+        <div id="koTree" data-bind="template:{name:'template-node'}"></div>
+
+        <div class="hidden" id="template-node">
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <div class="buttons left">
+                        <button type="button" class="btn btn-xs" data-bind="visible: isOpen, click: toggle">
+                            <span class="glyphicon glyphicon-folder-open"/>
+                        </button>
+                        <button type="button" class="btn btn-xs"  data-bind="visible: !isOpen(), click: toggle">
+                            <span class="glyphicon glyphicon-folder-close"/>
+                        </button>
+                    </div>
+                    <div class="label" data-bind="text: bind('name'), click: edit"></div>
+
+                    <div class="buttons">
+                        <input type="text" placeholder="Filter..." data-bind="value: filter,valueUpdate:'input'"/>
+                        <button type="button" class="btn btn-xs" data-bind="click: add">
+                            <span class="glyphicon glyphicon-plus"/>
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-body" data-bind="visible: isOpen">
+                    <div data-bind="template: { name: 'template-node', foreach: childrenFiltered()}"></div>        
+                </div>
+            </div>
+
+        </div>
+
+        <script  src="../libs/jquery/jquery.min.js"></script>
+        <script  src="../libs/lodash.js/lodash.js"></script>
+        <script  src="../libs/backbone.js/backbone.js"></script>
+        <script  src="../libs/knockout/knockout-min.js"></script>
+        <script  src="js/app.js"></script>
+        <script>
+            $(function () {
+                window.koApp = new App().render($('#koTree'));
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+.hidden {
+  display: none;
+}
+.panel-heading {
+  position: relative;
+  border-left: 1px solid #dddddd;
+}
+.panel-heading .buttons {
+  position: absolute;
+  top: 50%;
+  margin-top: -11px;
+  right: 10px;
+}
+.panel-heading .buttons.left {
+  right: initial;
+  left: 10px;
+}
+.panel-heading .label {
+  margin-left: 25px;
+}
+.panel-heading .label:hover {
+  background-color: #c4c4c4;
+}
+.panel.panel-default {
+  margin-bottom: -1px;
+}
+.panel-body {
+  margin-top: -1px;
+  margin-right: -1px;
+  padding: 0px 0px 0px 25px;
+}
+.panel {
+  border-left: none;
+  border-bottom: none;
+}

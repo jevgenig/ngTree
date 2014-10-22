@@ -1,0 +1,49 @@
+@broot: "../../libs/bower_components/bootstrap/";
+@lpath: "@{broot}less/";
+
+
+// Core variables and mixins
+@import "@{lpath}variables.less";
+@import "@{lpath}mixins.less";
+
+
+.hidden {
+    display:none;
+}
+
+.panel-heading {
+    position:relative;
+    border-left:1px solid @panel-default-border;
+    .buttons {
+        position:absolute;
+        top:50%;
+        margin-top:-11px;
+        right:10px;
+        &.left {
+            right:initial;
+            left:10px;
+        }
+    }
+    .label {
+        margin-left:25px;
+        &:hover {
+            background-color: darken(@panel-default-border,10%);
+        }
+    }
+    .label:hover {
+        
+    }
+}
+.panel.panel-default {
+    margin-bottom: -1px;
+}
+.panel-body {
+    margin-top:-1px;
+    margin-right:-1px;
+
+    padding:0px 0px 0px 25px;
+}
+.panel {
+    border-left:none;
+    border-bottom:none;
+}
