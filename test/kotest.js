@@ -48,19 +48,19 @@ describe("Testing children", function () {
         expect(model.children().length).toBe(3);
     });
     it(" add", function () {
-        model.add('child4');
+        model._add('child4');
         expect(model.children().length).toBe(4);
     });
 
     it(" add edit filter", function () {
-        var newModel = _.last(model.add('child4').children());
-        newModel.set('name', 'child1');
+        var newModel = _.last(model._add('child4').children());
+        newModel._edit('child1');
         model.filter('child1');
         expect(model.childrenFiltered().length).toBe(2);
     });
 
     it(" filter fresh add", function () {
-        model.add('child4').filter('child4');
+        model._add('child4').filter('child4');
         expect(model.childrenFiltered().length).toBe(1);
         expect(model.childrenFiltered()[0].get('name')).toBe('child4');
 

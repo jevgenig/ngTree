@@ -29,7 +29,9 @@ TreeNode = (function(_super) {
   TreeNode.prototype.load = function(o) {
     var index, value;
     o = o || {};
-    this.set('name', o.name);
+    if (o.name) {
+      this.set('name', o.name);
+    }
     this.children((function() {
       var _ref, _results;
       _ref = o.children;
@@ -64,12 +66,22 @@ TreeNode = (function(_super) {
     return this.isOpen(!this.isOpen());
   };
 
-  TreeNode.prototype.edit = function(newName) {
-    return (newName = newName || prompt('Change name', this.get('name'))) && this.set('name', newName);
+  TreeNode.prototype.edit = function() {
+    var newName;
+    return (newName = prompt('Change name', this.get('name'))) && this._edit(newName);
   };
 
-  TreeNode.prototype.add = function(newName) {
-    (newName = newName || prompt('Enter name')) && this.children.push(this._regChild(new TreeNode({
+  TreeNode.prototype._edit = function(newName) {
+    return this.set('name', newName);
+  };
+
+  TreeNode.prototype.add = function() {
+    var newName;
+    return (newName = prompt('Enter name')) && this._add(newName);
+  };
+
+  TreeNode.prototype._add = function(newName) {
+    this.children.push(this._regChild(new TreeNode({
       name: newName
     })));
     return this.trigger('change');

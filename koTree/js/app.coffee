@@ -11,7 +11,7 @@ class TreeNode extends Backbone.Model
           @._binds[prop] and @._binds[prop](value)
   load:(o)->
     o = o or {}
-    @.set 'name',o.name
+    @.set 'name',o.name if o.name
     @.children (@._regChild new TreeNode().load value for index,value of o.children)
     @
   bind:(name,value) ->
@@ -24,10 +24,14 @@ class TreeNode extends Backbone.Model
     c
   toggle:->
     @.isOpen !@.isOpen()
-  edit: (newName)  ->
-    (newName = newName or prompt 'Change name',@.get 'name')  and @.set 'name', newName
-  add: (newName)->
-    (newName = newName or prompt 'Enter name') and @.children.push (@._regChild new TreeNode {name:newName})
+  edit: ()  ->
+    (newName = prompt 'Change name',@.get 'name') and @._edit(newName)
+  _edit: (newName)  ->
+    @.set 'name', newName
+  add: ->
+    (newName = prompt 'Enter name') and @._add(newName)
+  _add: (newName)->
+    @.children.push (@._regChild new TreeNode {name:newName})
     @.trigger 'change'
   toJSON: ->
     json = super() 
